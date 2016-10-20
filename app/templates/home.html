@@ -1,33 +1,19 @@
 {% extends "base.html" %}
 {% block content %}
   <div class="container">
+    <div class= "sectiontop">
+        <form action="logout" id="logout">
+          <span id="username">Logged in as {{ name }} </br> </span>
+          <input class="action-button" id="logout-button" type="submit" value="Logout">
+        </form>
+    </div>
     <div class="row">
-      <h1>Welcome to Traveler Central</h1>
-      <div class= "section">
-        <a href="{{ url_for('create_traveler') }}">Add a Traveler</a>
-      </div>
+    </br>
+      <h1>Welcome to your Hyemisphere </h1>
       <div class="divider"></div>
       <div class="section">
-        <h3>Traveler Information:</h3>
-        <table class="striped">
-          <thead>
-            <tr>
-              <th data-field="name">Name</th>
-              <th data-field="email">Email</th>
-            </tr>
-          </thead>
-<!-- code to display all user -->
-          {% for traveler in travelers %}
-          <tr>
-            <td> {{traveler['name']}} </td>
-            <td> {{traveler['email']}} </td>
-            <td> <a href="{{ url_for('create_travel', value=traveler['name']) }}">Add a Travel Itinerary</a> </td>
-        </tr>
-        {% endfor %}
-        </table>
-      </div>
-      <div class="section">
-        <h3>Travel Plans from Traveler:</h3>
+        <a href="{{ url_for('create_travel', value=name) }}">Add a Trip</a> </br> </br>
+        <h3>Travel Plans for {{ name }}:</h3> </br>
         <!-- Display all the current existing order information here -->
         <table class="striped">
           <thead>

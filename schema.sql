@@ -11,7 +11,9 @@ drop table if exists names;
 create table names (
 	name_id integer primary key,
 	name text,
-	FOREIGN KEY (name) REFERENCES travelers(name)
+	travel_id integer,
+	FOREIGN KEY (name) REFERENCES travelers(name),
+	FOREIGN KEY (travel_id) REFERENCES travels(travel_id)
 );
 
 drop table if exists travels;

@@ -1,10 +1,17 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="container">
+  <div class= "sectiontop">
+      <form action="logout" id="logout">
+        <span id="username">Logged in as {{ name }} </br> </span>
+        <input class="action-button" id="logout-button" type="submit" value="Logout">
+      </form>
+  </div>
   <div class="row">
     <div class= "section">
       <a href="{{ url_for('display_traveler') }}">Home</a>
     </div>
+
     <h2>Add Travel Plan</h2>
     <form action="" method="post" name="login">
       {{ form.hidden_tag() }}
@@ -21,6 +28,14 @@
         </p>
         <p>
           Traveling with:<br>
+          <form action = "demo_form.asp" method="get">
+          <input list = "browsers" name = "browser">
+            <datalist id = "browsers">
+              <option value = "Friend1">
+              <option value = "Friend2">
+              <option value = "Friend3">
+            </datalist>
+          </form>
         </p>
       </div>
       <p><input type="submit" value="Create Travel"></p>

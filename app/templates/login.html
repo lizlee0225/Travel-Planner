@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}
+	Login
+{% endblock %}
+
+{% block content %}
+<body background="{{ url_for('static', filename="vacation.jpg") }}">
+</br>
+<div class="main-container">
+	<div id="welcome"> <h3>Welcome to Hyemisphere!  Let's get you logged in!</h3> </div>
+	<form action="login" method='post'>
+	<!-- what is "for" and "name"? -->
+	<label for="username"></label><input type="text" name="username" placeholder=" What's your username?"></input>
+
+		<input class="action-button" id="login" type="submit" value="Login")> </input>
+	</form>
+</div>
+{% endblock %}
