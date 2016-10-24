@@ -36,5 +36,5 @@ def retrieve_travels():
         con.row_factory = sql.Row
         cur = con.cursor()
         cur.execute("PRAGMA foreign_keys = ON")
-        result = cur.execute("select * from travels").fetchall()
+        result = cur.execute("select * from travels where traveler_name = ?",(username,)).fetchall()
     return result
