@@ -24,18 +24,18 @@
         </p>
         <p>
           Destination:<br>
-          {{form.destination(size=120)}}<br>
-        </p>
+          {{ form.destination(size=120) }}
+        </p> 
         <p>
           Traveling with:<br>
-          <form action = "demo_form.asp" method="get">
-          <input list = "browsers" name = "browser">
-            <datalist id = "browsers">
-              <option value = "Friend1">
-              <option value = "Friend2">
-              <option value = "Friend3">
+          <input list = "friend" name = "friend">
+            <datalist id = "friend">
+              <option value = "Dandanbang">
+              <option value = "Carlo">
+              <option value = "Parv">
+              <option value = "Ed">
+              <option value = "Liz">
             </datalist>
-          </form>
         </p>
       </div>
       <p><input type="submit" value="Create Travel"></p>

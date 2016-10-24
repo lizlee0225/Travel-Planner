@@ -7,23 +7,27 @@ from .models import *
 @app.route('/')
 @app.route('/index')
 def index():
-	username = ''
-	if 'username' in session:
-		username = escape(session['username'])
-		return render_template('home.html', name=username)
-	else:
-		return render_template('login.html')
+    username = ''
+    form = TravelerForm()
+    if 'username' in session:
+        username = escape(session['username'])
+        # if form.validate_on_submit():
+        #     username = form.name.data
+        #     insert_traveler(username)
+        return redirect('/travelers')
+    else:
+        return render_template('login.html')
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-	if request.method=='POST':
-		session['username'] = request.form.get("username")
-		return redirect(url_for('index'))
+    if request.method=='POST':
+        session['username'] = request.form.get("username")
+        return redirect(url_for('index'))
 
 @app.route('/logout')
 def logout():
-	session.pop('username', None)
-	return redirect(url_for('index'))
+    session.pop('username', None)
+    return redirect(url_for('index'))
 
 # @app.route('/create_traveler', methods=['GET', 'POST'])
 # def create_traveler():
@@ -40,11 +44,11 @@ def logout():
 @app.route('/travelers')
 def display_traveler():
     #Retreive data from database to display
-    travelers = retrieve_travelers()
+    # travelers = retrieve_travelers()
     travels = retrieve_travels()
     username = escape(session['username'])
     return render_template('home.html',
-                            travelers=travelers, travels=travels, name=username)
+                             travels=travels, name=username)
 
 @app.route('/create_travel/<value>', methods=['GET', 'POST'])
 def create_travel(value):
@@ -53,9 +57,9 @@ def create_travel(value):
     form = TravelForm(obj=value)
     username = escape(session['username'])
     if form.validate_on_submit():
-        traveler_name = value
         trip_name = form.trip_name.data
         destination = form.destination.data
-        insert_travels(trip_name, destination)
+        friend = form.friend.data
+        insert_travels(trip_name, destination, friend, username)
         return redirect('/travelers')
     return render_template('travel.html', form=form, name=username)
