@@ -4,7 +4,6 @@
   <div class= "sectiontop">
       <form action="logout" id="logout">
         <span id="username">Logged in as {{ name }} </br> </span>
-        <input class="action-button" id="logout-button" type="submit" value="Logout">
       </form>
   </div>
   <div class="row">
@@ -25,7 +24,7 @@
         <p>
           Destination:<br>
           {{ form.destination(size=120) }}
-        </p> 
+        </p>
         <p>
           Traveling with:<br>
           <input list = "friend" name = "friend">

@@ -8,38 +8,50 @@ from .models import *
 @app.route('/index')
 def index():
     username = ''
-    form = TravelerForm()
     if 'username' in session:
         username = escape(session['username'])
-        # if form.validate_on_submit():
-        #     username = form.name.data
-        #     insert_traveler(username)
         return redirect('/travelers')
     else:
         return render_template('login.html')
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    form=TravelerForm
     if request.method=='POST':
-        session['username'] = request.form.get("username")
-        return redirect(url_for('index'))
+        username = request.form.get("username")
+        if verify(username):
+            session['username'] = request.form.get("username")
+            return redirect('/travelers')
+        else:
+            return render_template('not_authorized.html')
+
+@app.route('/signup_click', methods=['GET', 'POST'])
+def signup_click():
+    return render_template('signup.html')
+
+@app.route('/signup', methods=['GET', 'POST'])
+def signup():
+    form=TravelerForm
+    if request.method=='POST':
+        username = request.form.get("username")
+        if verify(username):
+            return render_template('alreadyregistered.html')
+        else:
+            sign_up(username)
+            session['username'] = request.form.get("username")
+            return redirect('/travelers')
+
+@app.route('/delete_travel/<value>', methods=['GET', 'POST'])
+def delete_travel(value):
+    form = TravelForm(obj=value)
+    print("THIS IS THE VALUE", value)
+    delete_travels(value)
+    return redirect('/travelers')
 
 @app.route('/logout')
 def logout():
     session.pop('username', None)
     return redirect(url_for('index'))
-
-# @app.route('/create_traveler', methods=['GET', 'POST'])
-# def create_traveler():
-#     form = TravelerForm()
-#     if form.validate_on_submit():
-#         # Get data from the form
-#         # Send data from form to Database
-#         name = form.name.data
-#         email = form.email.data
-#         insert_traveler(name, email)
-#         return redirect('/travelers')
-#     return render_template('traveler.html', form=form)
 
 @app.route('/travelers')
 def display_traveler():

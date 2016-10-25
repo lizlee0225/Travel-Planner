@@ -18,6 +18,7 @@
         <table class="striped">
           <thead>
             <tr>
+              <th data-field="travel-id">Travel ID</th>
               <th data-field="trip_name">Trip Name</th>
               <th data-field="destination">Destination</th>
               <th data-field="name">Traveling with: </th>
@@ -26,9 +27,11 @@
 <!-- code to display all user -->
           {% for travel in travels %}
           <tr>
+            <td> {{travel['travel_id']}} </td>
             <td> {{travel['trip_name']}} </td>
             <td> {{travel['destination']}} </td>
             <td> {{travel['friend']}} </td>
+            <td> <a href="{{ url_for('delete_travel', value=travel['travel_id']) }}">Delete Trip</a> </td>
           </tr>
         </tr>
         {% endfor %}

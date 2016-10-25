@@ -19,6 +19,21 @@ import os.path
 #         cur.execute("PRAGMA foreign_keys = ON")
 #         result = cur.execute("select * from travelers").fetchall()
 #     return result
+def verify(username):
+    with sql.connect("app.db") as con:
+        cur = con.cursor()
+        results = cur.execute("SELECT * FROM travelers").fetchall()
+        print(results)
+        for entry in results:
+            if username == entry[1]:
+                return True
+        return False
+
+def sign_up(username):
+    with sql.connect("app.db") as con:
+        cur = con.cursor()
+        cur.execute("INSERT INTO travelers (traveler_name) VALUES (?)",(username,))
+        con.commit()
 
 def insert_travels(trip_name, destination, friend, value):
     # SQL statement to insert into database goes here
@@ -26,6 +41,15 @@ def insert_travels(trip_name, destination, friend, value):
         cur = con.cursor()
         # cur.execute("PRAGMA foreign_keys = ON")
         cur.execute("INSERT INTO travels (trip_name, destination, friend, traveler_name) VALUES (?,?,?,?)",(trip_name, destination, friend, value))
+        con.commit()
+        # newcur.execute("INSERT INTO name_travel (name, travel_id) VALUES (?,?)",(value, cur.lastrowid))
+
+def delete_travels(value):
+    # SQL statement to insert into database goes here
+    with sql.connect("app.db") as con:
+        cur = con.cursor()
+        # cur.execute("PRAGMA foreign_keys = ON")
+        cur.execute("DELETE FROM travels where travel_id=" + value + "")
         con.commit()
         # newcur.execute("INSERT INTO name_travel (name, travel_id) VALUES (?,?)",(value, cur.lastrowid))
 
