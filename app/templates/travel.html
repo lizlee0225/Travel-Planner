@@ -26,16 +26,10 @@
           {{ form.destination(size=120) }}
         </p>
         <p>
-          Traveling with:<br>
-          <input list = "friend" name = "friend">
-            <datalist id = "friend">
-              <option value = "Dandanbang">
-              <option value = "Carlo">
-              <option value = "Parv">
-              <option value = "Ed">
-              <option value = "Liz">
-            </datalist>
+          Traveling with: <br>
+          {{ form.friend }}
         </p>
+        <br><br>
       </div>
       <p><input type="submit" value="Create Travel"></p>
     </form>

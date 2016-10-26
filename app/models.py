@@ -3,22 +3,6 @@ import sqlite3 as sql
 import os.path
 #defines functions used by views to insert and display info from db
 
-# def insert_traveler(name):
-#     # SQL statement to insert into database goes here
-#     with sql.connect("app.db") as con:
-#         cur = con.cursor()
-#         cur.execute("PRAGMA foreign_keys = ON")
-#         cur.execute("INSERT INTO travelers (name) VALUES (?)",(name))
-#         con.commit()
-
-# def retrieve_travelers():
-#     # SQL statement to query database goes here
-#     with sql.connect("app.db") as con:
-#         con.row_factory = sql.Row
-#         cur = con.cursor()
-#         cur.execute("PRAGMA foreign_keys = ON")
-#         result = cur.execute("select * from travelers").fetchall()
-#     return result
 def verify(username):
     with sql.connect("app.db") as con:
         cur = con.cursor()

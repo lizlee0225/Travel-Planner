@@ -44,7 +44,6 @@ def signup():
 @app.route('/delete_travel/<value>', methods=['GET', 'POST'])
 def delete_travel(value):
     form = TravelForm(obj=value)
-    print("THIS IS THE VALUE", value)
     delete_travels(value)
     return redirect('/travelers')
 
@@ -56,7 +55,6 @@ def logout():
 @app.route('/travelers')
 def display_traveler():
     #Retreive data from database to display
-    # travelers = retrieve_travelers()
     travels = retrieve_travels()
     username = escape(session['username'])
     return render_template('home.html',
