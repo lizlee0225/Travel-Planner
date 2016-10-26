@@ -6,14 +6,16 @@ create table travelers (
 	traveler_name text not null
 );
 
-/*drop table if exists names;
+drop table if exists names;
 create table names (
 	name_id integer primary key,
-	name text,
+	traveler_name text,
+	friend text,
 	travel_id integer,
-	FOREIGN KEY (name) REFERENCES travelers(name),
+	FOREIGN KEY (friend) REFERENCES travels(friend),
+	FOREIGN KEY (traveler_name) REFERENCES travelers(traveler_name),
 	FOREIGN KEY (travel_id) REFERENCES travels(travel_id)
-);*/
+);
 
 drop table if exists travels;
 create table travels (

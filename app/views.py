@@ -56,9 +56,10 @@ def logout():
 def display_traveler():
     #Retreive data from database to display
     travels = retrieve_travels()
+    travels2 = retrieve_travels2()
     username = escape(session['username'])
     return render_template('home.html',
-                             travels=travels, name=username)
+                             travels=travels, travels2=travels2, name=username)
 
 @app.route('/create_travel/<value>', methods=['GET', 'POST'])
 def create_travel(value):

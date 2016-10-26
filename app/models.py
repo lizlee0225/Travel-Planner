@@ -25,6 +25,8 @@ def insert_travels(trip_name, destination, friend, value):
         cur = con.cursor()
         # cur.execute("PRAGMA foreign_keys = ON")
         cur.execute("INSERT INTO travels (trip_name, destination, friend, traveler_name) VALUES (?,?,?,?)",(trip_name, destination, friend, value))
+        travel_id = cur.lastrowid
+        cur.execute("INSERT INTO names (travel_id, friend, traveler_name) VALUES (?,?,?)", (travel_id, friend, value))
         con.commit()
         # newcur.execute("INSERT INTO name_travel (name, travel_id) VALUES (?,?)",(value, cur.lastrowid))
 
@@ -45,4 +47,14 @@ def retrieve_travels():
         cur = con.cursor()
         cur.execute("PRAGMA foreign_keys = ON")
         result = cur.execute("select * from travels where traveler_name = ?",(username,)).fetchall()
+    return result
+
+def retrieve_travels2():
+    # SQL statement to query database goes here
+    username = escape(session['username'])
+    with sql.connect("app.db") as con:
+        con.row_factory = sql.Row
+        cur = con.cursor()
+        cur.execute("PRAGMA foreign_keys = ON")
+        result = cur.execute("select * from travels where friend = ?",(username,)).fetchall()
     return result

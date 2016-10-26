@@ -12,13 +12,12 @@
       <h1>Welcome to your Hyemisphere </h1>
       <div class="divider"></div>
       <div class="section">
-        <a href="{{ url_for('create_travel', value=name) }}">Add a Trip</a> </br> </br>
-        <h3>Travel Plans for {{ name }}:</h3> </br>
+        <a href="{{ url_for('create_travel', value=name) }}">Plan a Trip</a> </br> </br>
+        <h3>Trips {{ name }} has planned:</h3> </br>
         <!-- Display all the current existing order information here -->
         <table class="striped">
           <thead>
             <tr>
-              <th data-field="travel-id">Travel ID</th>
               <th data-field="trip_name">Trip Name</th>
               <th data-field="destination">Destination</th>
               <th data-field="name">Traveling with: </th>
@@ -27,11 +26,30 @@
 <!-- code to display all user -->
           {% for travel in travels %}
           <tr>
-            <td> {{travel['travel_id']}} </td>
             <td> {{travel['trip_name']}} </td>
             <td> {{travel['destination']}} </td>
             <td> {{travel['friend']}} </td>
             <td> <a href="{{ url_for('delete_travel', value=travel['travel_id']) }}">Delete Trip</a> </td>
+          </tr>
+        </tr>
+        {% endfor %}
+        </table>
+        <h3>Trips {{ name }} is following along:</h3> </br>
+        <!-- Display all the current existing order information here -->
+        <table class="striped">
+          <thead>
+            <tr>
+              <th data-field="trip_name">Trip Name</th>
+              <th data-field="destination">Destination</th>
+              <th data-field="name">Travel Planner: </th>
+            </tr>
+          </thead>
+<!-- code to display all user -->
+          {% for travel in travels2 %}
+          <tr>
+            <td> {{travel['trip_name']}} </td>
+            <td> {{travel['destination']}} </td>
+            <td> {{travel['traveler_name']}} </td>
           </tr>
         </tr>
         {% endfor %}
