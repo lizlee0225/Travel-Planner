@@ -12,9 +12,22 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
   </head>
+  <header>
+    {% block header %}
+    <div id="site-title-wrapper">
+      <div id="site-icon-wrapper">
+      <a href="{{ url_for('display_traveler') }}"><img src="../static/hyem1.png"id="hyem"> </a>
+      </div>
+    </div>
+    {% endblock %}
+  </header>
   <body>
     <script type="text/javascript", src="{{url_for('static', filename='main.js')}}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
     {% block content %} {% endblock %}
   </body>
+  <footer>
+    <br>
+    <p>&copy; Copyright 2016 Hyemisphere, all rights reserved</p>
+  </footer>
 </html>

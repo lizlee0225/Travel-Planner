@@ -1,11 +1,14 @@
 {% extends "base.html" %}
+
+{% block header %}
+	{{ super() }}
+	<form action="logout" id="logout">
+		<span id="username">Logged in as {{ name }}</span>
+	</form>
+{% endblock %}
+
 {% block content %}
 <div class="container">
-  <div class= "sectiontop">
-      <form action="logout" id="logout">
-        <span id="username">Logged in as {{ name }} </br> </span>
-      </form>
-  </div>
   <div class="row">
     <div class= "section">
       <a href="{{ url_for('display_traveler') }}">Home</a>

@@ -54,16 +54,25 @@ html, body {
 
 body {
 	background-repeat: no-repeat;
-	background-size: 100%;
+	background-size: cover;
+	background-position: center center;
 }
 
 header {
-	background-color: #e04c1f;
-	box-shadow: 0 2px 40px 1px #a7a7a7;
+	background-color: #27416b;
 	color: #ecf0f1;
 	height: 5rem;
 }
 
+footer {
+	background-color: #27416b;
+	bottom: 0;
+	color: #ecf0f1;
+	height: 7rem;
+	margin-top: 7em;
+	text-align: center;
+	width: 100%;
+}
 h1, h3 {
 	padding: 4px;
 }
@@ -124,14 +133,16 @@ text-align: center;
 	display: inline-block;
 	height: 5rem;
 	width: 15%;
+	vertical-align: middle;
+	text-align: center;
 }
 
-#site-icon-wrapper {
+#hyem {
 	display: inline-block;
-	margin-left: 1rem;
-	margin-top: -.5rem;
+	margin-left: 5rem;
+	margin-top: 0.5rem;
 	vertical-align: middle;
-	width: 2.5rem;
+	width: 3rem;
 }
 
 #site-icon-wrapper img {
